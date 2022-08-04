@@ -9,6 +9,7 @@ const SingleNote = ({note}) => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const {notesId} = useParams();
+  console.log(notesId);
   // const [data] = useNoteDetails(notesId);
 
 
@@ -17,7 +18,20 @@ const SingleNote = ({note}) => {
 }
 
     const onSubmit = data =>{
-      console.log(data);
+      const url = `http://localhost:5000/notes/${notesId}`
+      fetch(url, {
+        method : 'PUT',
+        headers : {
+          'content-type' : 'application/json'
+        },
+        body : JSON.stringify(data)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('success', data);
+        toast('Notes Updated Successfully');
+        reset();
+      })
     }
 
     
