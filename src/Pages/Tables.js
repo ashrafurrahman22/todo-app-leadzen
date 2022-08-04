@@ -5,6 +5,7 @@ import SingleNote from './Home/SingleNote';
 const Tables = () => {
 
     const[notes] = useNotes();
+    console.log(notes)
 
     return (
         <div style={{fontFamily:"inter"}}>
