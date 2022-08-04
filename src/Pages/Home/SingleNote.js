@@ -1,12 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import useNoteDetails from '../../Hooks/useNoteDetails';
 
 const SingleNote = ({note}) => {
 
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
+  const {notesId} = useParams();
+  // const [data] = useNoteDetails(notesId);
+
 
   const navigateToDetails = id =>{
     navigate(`/note/${id}`)
@@ -51,10 +55,10 @@ const SingleNote = ({note}) => {
 
               <div className='py-5 flex justify-center items-center'>
 
-           <form className='flex items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
+           <form className='flex flex-col p-6 items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
       <textarea placeholder='Write Your Notes' className='border w-96  border-slate-600 p-2 rounded-xl' type='text' {...register("notes", {required:true})}  />
 
-      <input className='rounded px-5 btn btn-primary' type="submit" value="add Notes"/>
+      <input className='rounded px-5 btn btn-primary' type="submit" value="Update"/>
       </form>
            </div>
 
