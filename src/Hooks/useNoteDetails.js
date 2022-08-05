@@ -4,7 +4,7 @@ const useNoteDetails = notesId =>{
     const [data, setData] = useState({});
 
     useEffect(()=>{
-        const url = `http://localhost:5000/notes/${notesId}`
+        const url = `https://lit-tor-87705.herokuapp.com/notes/${notesId}`
         fetch(url)
         .then(res => res.json())
         .then(data => setData(data))

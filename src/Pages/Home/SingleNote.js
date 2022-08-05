@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -9,8 +9,9 @@ const SingleNote = ({note}) => {
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const {notesId} = useParams();
-  console.log(notesId);
-  // const [data] = useNoteDetails(notesId);
+
+
+
 
 
   const navigateToDetails = id =>{
@@ -18,7 +19,7 @@ const SingleNote = ({note}) => {
 }
 
     const onSubmit = data =>{
-      const url = `http://localhost:5000/notes/${notesId}`
+      const url = `https://lit-tor-87705.herokuapp.com/notes/${notesId}`
       fetch(url, {
         method : 'PUT',
         headers : {
@@ -29,7 +30,7 @@ const SingleNote = ({note}) => {
       .then(res => res.json())
       .then(data => {
         console.log('success', data);
-        toast('Notes Updated Successfully');
+        toast.success('Notes Updated Successfully');
         reset();
       })
     }
@@ -41,7 +42,7 @@ const SingleNote = ({note}) => {
     const handleDelete = id =>{
         const procede = window.confirm('Are You Sure?');
         if(procede){
-          const url = `http://localhost:5000/notes/${id}`
+          const url = `https://lit-tor-87705.herokuapp.com/notes/${id}`
           fetch(url, {
             method : "DELETE"
           })
@@ -65,17 +66,18 @@ const SingleNote = ({note}) => {
           <input type="checkbox" id="my-modal-3" class="modal-toggle" />
           <div class="modal">
             <div class="modal-box relative">
-              <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+              {/* <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label> */}
+              <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">x</label>
 
               <div className='py-5 flex justify-center items-center'>
 
-           <form className='flex flex-col p-6 items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
-      <textarea placeholder='Write Your Notes' className='border w-96  border-slate-600 p-2 rounded-xl' type='text' {...register("notes", {required:true})}  />
+           <form for="my-modal-3" className='flex flex-col p-6 items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
+      <textarea placeholder='Update Your Notes' className='border w-96  border-slate-600 p-2 rounded-xl' type='text' {...register("notes", {required:true})}  />
 
       <input className='rounded px-5 btn btn-primary' type="submit" value="Update"/>
       </form>
            </div>
-
+           
 
             </div>
           </div>

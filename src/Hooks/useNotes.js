@@ -5,7 +5,7 @@ const useNotes =() =>{
     const [notes, setNotes] = useState([]);
     
     useEffect(()=>{
-        fetch('http://localhost:5000/notes')
+        fetch('https://lit-tor-87705.herokuapp.com/notes')
         .then(res => res.json())
         .then(data => setNotes(data))
     }, [notes])

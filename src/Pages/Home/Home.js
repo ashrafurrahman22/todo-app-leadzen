@@ -14,7 +14,7 @@ const Home = () => {
   const onSubmit = data => {
     console.log(data)
 
-    axios.post('http://localhost:5000/notes', data)
+    axios.post('https://lit-tor-87705.herokuapp.com/notes', data)
     .then(response =>{
       const {data} = response;
       console.log(response);
