@@ -1,3 +1,5 @@
+import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -62,7 +64,10 @@ const SingleNote = ({note}) => {
         <td className=''>{note.notes}</td>
           {/* <td><button className='btn btn-primary'>Edit</button></td> */}
           <td>
-          <label onClick={()=>navigateToDetails(note._id)} for="my-modal-3" class="btn modal-button">Edit</label>
+          <label onClick={()=>navigateToDetails(note._id)} for="my-modal-3" class="btn modal-button">
+            <small>Edit</small>
+            <FontAwesomeIcon className='pl-2' icon={faPenToSquare}></FontAwesomeIcon>
+          </label>
           <input type="checkbox" id="my-modal-3" class="modal-toggle" />
           <div class="modal">
             <div class="modal-box relative">
@@ -85,7 +90,10 @@ const SingleNote = ({note}) => {
           </td>
 
 
-        <td><button onClick={()=>handleDelete(note._id)}  className='btn hover:btn-warning bg-yellow-400 border-0 text-black'>Delete</button></td>
+        <td><button onClick={()=>handleDelete(note._id)}  className='btn hover:btn-warning bg-yellow-400 border-0 text-black'>
+          <small>Delete</small>
+        <FontAwesomeIcon className='pl-2' icon={faTrash} />
+        </button></td>
 
       </tr>
     );
