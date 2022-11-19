@@ -8,4 +8,4 @@ Used Technologies
 
 Server Link: [https://github.com/ashrafurrahman22/MERN-to-do-server]
 
-Live Link: [https://golden-sunshine-9a0041.netlify.app/]
+Live Link: [https://todo-app-leadzen.netlify.app/]
