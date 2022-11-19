@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import Tables from '../Tables';
+import Tables from './Tables';
 
 const Home = () => {
 
@@ -20,7 +20,7 @@ const Home = () => {
       console.log(response);
         if(data.insertedId){
         reset();
-        toast.success('notes added');
+        toast.success('notes added ✅');
         }
     });
   };
@@ -31,7 +31,7 @@ const Home = () => {
         <div className='min-h-screen p-20 flex justify-center items-center w-full bg-slate-700'>
 
 
-            <div className='card pb-10 bg-base-100 text-black shadow-2xl w-2/3'>
+            <div className='card pb-10 bg-base-100 text-black shadow-2xl w-full'>
 
             <h2 style={{fontFamily:"poppins"}} className='text-center pt-8 text-2xl font-semibold'>To-Do-App</h2>
 
@@ -40,7 +40,7 @@ const Home = () => {
            <form className='flex items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
       <textarea placeholder='Write Your Notes' className='border w-96  border-slate-600 p-2 rounded-xl' type='text' {...register("notes", {required:true})}  />
 
-      <input className='rounded px-5 btn btn-primary' type="submit" value="add Notes"/>
+      <input className='rounded-full normal-case px-5 btn btn-primary' type="submit" value="Add Notes"/>
       </form>
            </div>
 

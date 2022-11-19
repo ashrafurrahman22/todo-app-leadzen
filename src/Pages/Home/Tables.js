@@ -1,6 +1,6 @@
 import React from 'react';
-import useNotes from '../Hooks/useNotes';
-import SingleNote from './Home/SingleNote';
+import useNotes from '../../Hooks/useNotes';
+import SingleNote from './SingleNote';
 
 const Tables = () => {
 
@@ -17,7 +17,9 @@ const Tables = () => {
     {/* <!-- head --> */}
     <thead className='text-center'>
       <tr>
+        <th>Check</th>
         <th>Notes</th>
+        <th>Is Complete?</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>

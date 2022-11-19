@@ -13,7 +13,7 @@ const SingleNote = ({note}) => {
   const {notesId} = useParams();
 
 
-
+  const [isPending, setPending] = useState("Pending")
 
 
   const navigateToDetails = id =>{
@@ -32,7 +32,7 @@ const SingleNote = ({note}) => {
       .then(res => res.json())
       .then(data => {
         console.log('success', data);
-        toast.success('Notes Updated Successfully');
+        toast.success('Notes Updated Successfully ✅');
         reset();
       })
     }
@@ -50,7 +50,7 @@ const SingleNote = ({note}) => {
           })
           .then(res => {
               res.json()
-            toast.success("Successfully deleted")
+            toast.success("Successfully deleted ✅")
             })
           .then(data => {
             console.log(data)
@@ -58,13 +58,31 @@ const SingleNote = ({note}) => {
         }
       }
 
+      const handleChange = event => {
+        if (event.target.checked) {
+          setPending("Completed")
+          console.log('✅ Checkbox is checked');
+        } else {
+          setPending("Pending")
+          console.log('⛔️ Checkbox is NOT checked');
+        }
+        // setIsSubscribed(current => !current);
+      };
 
     return (
         <tr>
+          <td><input
+          type="checkbox"
+          // value={isSubscribed}
+          onChange={handleChange}
+          id="subscribe"
+          name="subscribe"
+        /></td>
         <td className=''>{note.notes}</td>
+        <td> <p className='btn bg-red-600 w-28 text-white font-extralight normal-case rounded-full'>{isPending}</p> </td>
           {/* <td><button className='btn btn-primary'>Edit</button></td> */}
           <td>
-          <label onClick={()=>navigateToDetails(note._id)} for="my-modal-3" class="btn modal-button">
+          <label onClick={()=>navigateToDetails(note._id)} for="my-modal-3" class="btn rounded-full w-28 modal-button">
             <small>Edit</small>
             <FontAwesomeIcon className='pl-2' icon={faPenToSquare}></FontAwesomeIcon>
           </label>
@@ -79,7 +97,7 @@ const SingleNote = ({note}) => {
            <form for="my-modal-3" className='flex flex-col p-6 items-center gap-3' onSubmit={handleSubmit(onSubmit)}>
       <textarea placeholder='Update Your Notes' className='border w-96  border-slate-600 p-2 rounded-xl' type='text' {...register("notes", {required:true})}  />
 
-      <input className='rounded px-5 btn btn-primary' type="submit" value="Update"/>
+      <input className='rounded px-5 btn rounded-full btn-primary' type="submit" value="Update"/>
       </form>
            </div>
            
@@ -90,7 +108,7 @@ const SingleNote = ({note}) => {
           </td>
 
 
-        <td><button onClick={()=>handleDelete(note._id)}  className='btn hover:btn-warning bg-yellow-400 border-0 text-black'>
+        <td><button onClick={()=>handleDelete(note._id)}  className='btn btn-warning hover:btn-success w-28 text-black font-extralight normal-case rounded-full'>
           <small>Delete</small>
         <FontAwesomeIcon className='pl-2' icon={faTrash} />
         </button></td>
